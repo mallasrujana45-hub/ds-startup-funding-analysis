@@ -1,5 +1,6 @@
 #Dataset files
 *.csv
+!data/processed/startup_funding_feature_engineered.csv
 *.xlsx
 *.xls
 *.zip
