@@ -5,14 +5,13 @@ import joblib
 import plotly.express as px
 from pathlib import Path
 
-# Page configuration
+
 st.set_page_config(
     page_title="Startup Funding Insights",
-    page_icon="🚀",
     layout="wide"
 )
 
-# Load dataset
+
 BASE_DIR = Path(__file__).resolve().parent
 
 DATA_PATH = (
@@ -23,7 +22,7 @@ DATA_PATH = (
 )
 
 df = pd.read_csv(DATA_PATH)
-# Create SubVertical_Grouped for the prediction form
+
 subvertical_counts = df["SubVertical_Cleaned"].value_counts()
 
 df["SubVertical_Grouped"] = df["SubVertical_Cleaned"].apply(
@@ -31,7 +30,7 @@ df["SubVertical_Grouped"] = df["SubVertical_Cleaned"].apply(
 )
 
 
-# Dashboard styling
+
 st.markdown("""
 <style>
 
@@ -83,10 +82,10 @@ hr {
 </style>
 """, unsafe_allow_html=True)
 
-# Sidebar navigation
+
 st.sidebar.markdown("""
 <div style="padding:10px 5px 25px 5px;">
-    <h2 style="color:white; margin-bottom:5px;">🚀 Startup Funding</h2>
+    <h2 style="color:white; margin-bottom:5px;"> Startup Funding and Sector Investment</h2>
     <p style="color:#B8B9D2; font-size:13px;">
         Analytics Dashboard
     </p>
@@ -130,7 +129,7 @@ page = st.sidebar.radio(
 )
 
 
-# Main heading
+
 st.title("Startup Funding Insights")
 st.write(
     "Explore trends, analyze investments and discover "
@@ -646,13 +645,13 @@ elif page == "Funding Explorer":
         "based on different details."
     )
 
-    # Search by startup name
+    
     search_name = st.text_input(
         "Search Startup Name",
         placeholder="Enter startup name..."
     )
 
-    # Filters
+    
     col1, col2 = st.columns(2)
 
     with col1:
@@ -677,7 +676,7 @@ elif page == "Funding Explorer":
             ["All"] + sorted(df["Year"].dropna().unique().tolist(), reverse=True)
         )
 
-    # Apply filters
+    
     filtered_df = df.copy()
 
     if search_name:
@@ -709,7 +708,7 @@ elif page == "Funding Explorer":
 
     st.write(f"Matching Records: {len(filtered_df)}")
 
-    # Display matching records
+    
     st.dataframe(
         filtered_df,
         use_container_width=True,
